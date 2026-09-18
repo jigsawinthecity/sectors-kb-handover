@@ -1,0 +1,349 @@
+Halo Tim Sectors,
+
+Saya Michael Wibowo, pengembang web app analisis saham Indonesia (
+https://www.google.com/url?q=https://masteridx.com&source=gmail&ust=1789527812317000&sa=E)
+untuk investor ritel, dengan paket berlangganan sekitar Rp149.000/bulan.
+Kami sedang mencari sumber data berlisensi untuk IDX dan tertarik memakai
+API Sectors.
+
+Mohon informasi berikut:
+
+1. Lisensi & redistribusi
+- Apakah data dari API Sectors boleh DITAMPILKAN ke pelanggan berbayar kami
+(display di web app, bukan menjual ulang data mentah)? Paket/lisensi apa
+yang dibutuhkan untuk itu?
+- Apakah Sectors memiliki lisensi dari BEI/IDX Data Services untuk
+distribusi data tersebut ke pihak ketiga, dan apakah ada kewajiban atribusi
+atau pelaporan jumlah pengguna?
+
+2. Cakupan data yang kami butuhkan
+- Harga harian (OHLC, volume, nilai, frekuensi) seluruh emiten + riwayat
+beberapa tahun
+- Indeks (IHSG, LQ45, sektoral)
+- Beli/jual asing dan ringkasan broker
+- Fundamental dan laporan keuangan
+- Kepemilikan (KSEI / pemegang saham di atas 1%) dan transaksi insider
+- Keterbukaan informasi / pengumuman emiten (judul, tanggal, dan kalau ada
+tautan atau isi dokumennya)
+- Seberapa cepat data diperbarui setelah penutupan pasar, dan apakah ada
+data intraday tertunda?
+
+3. Harga & teknis
+- Harga tiap paket, batas panggilan (rate limit), dan apakah ada masa uji
+coba
+- Opsi akses massal (bulk/snapshot harian) selain per-endpoint
+
+Skala kami masih kecil (tahap awal, puluhan hingga ratusan pelanggan), jadi
+kami mencari paket yang sesuai untuk startup. Terima kasih, ditunggu
+kabarnya.
+
+Salam,
+Michael Wibowo
+https://www.google.com/url?q=https://masteridx.com&source=gmail&ust=1789527812317000&sa=E
+
+Hi, I'm evaluating the Sectors API (Insider plan) for a systematic
+end-of-day data pipeline and have a few technical questions before
+subscribing:
+
+1. What is the maximum historical depth available for the daily net foreign
+inflow data (foreign-flow-by-symbol endpoint) — from what year is data
+available?
+
+2. Is there a market-wide aggregate endpoint for net foreign flow across
+all IDX-listed stocks per day, or do we need to sum it manually across each
+ticker? If manual, roughly how many credits would that consume to cover
+~600+ active tickers per day?
+
+3. What time is the EOD data typically finalized/available after market
+close (16:00–16:15 WIB) — is it ready in time for a pipeline that runs
+around 18:00–19:00 WIB?
+
+4. Does the 1 credit/call cost apply regardless of the date range requested
+(1–90 days), or is there additional cost for multi-day queries?
+
+5. Are there any rate limits (requests per minute/second) we should account
+for when looping
+
+Thank you
+
+To answer your questions:
+
+Historical Depth: The daily net foreign inflow data currently spans from the beginning of 2025. We are actively working on extending this historical depth.
+
+Market-Wide Aggregate: There isn't a single endpoint for market-wide aggregate flow right now, so you would need to sum the tickers manually. However, a market-wide endpoint is something we are considering adding in the near future.
+
+EOD Availability: You should schedule your pipeline to run around 20:00 WIB to ensure all EOD data is fully finalized.
+
+Credit Cost: Yes, the 1-credit cost applies regardless of the date range; a 90-day pull still costs just 1 credit.
+
+Rate Limits: The Insider tier has a rate limit of 300 requests per minute.
+
+Hello Sectors Team,
+
+I am currently evaluating Sectors Financial API for a long-horizon quantitative research and backtesting project focused exclusively on Indonesian equities.
+
+Before subscribing to Sectors Insider, I would like to confirm several technical aspects of your historical datasets that are particularly important for avoiding look-ahead and survivorship bias.
+
+1. For historical market data, could you please confirm the earliest available daily history for IDX securities, whether delisted/inactive stocks remain queryable, whether historical Open/High/Low/Close/Volume and traded value are available, and whether price data is adjusted for stock splits, rights issues, reverse splits, dividends, and other corporate actions? If both raw and adjusted values or adjustment factors are available, that would also be very useful.
+
+2. For company fundamentals, I understand that quarterly financial statements can be queried using financial report dates. My key requirement, however, is point-in-time availability. Does Sectors retain the actual publication or first-availability timestamp showing when each historical quarterly or annual financial statement first became available to investors? For example, for a report with fiscal period end 31 March 2015, I would need to know the actual date/time it became publicly available rather than assuming information was available on 31 March.
+
+Related to this, does Sectors preserve original and subsequently restated versions of historical financial statements, so that a backtest can retrieve the version that was genuinely available as of a historical date?
+
+I would also appreciate clarification regarding historical security-master information, including IPO/listing dates, delisting dates, ticker changes, inactive companies, historical sector/subsector membership, suspension periods, and corporate-action histories.
+
+I am planning to retrieve the data programmatically and maintain a local research database, for example in Parquet/DuckDB, which will then be used for repeated Python and AmiBroker backtests. Could you confirm whether permanent local storage for personal quantitative research/backtesting is permitted under the Sectors Insider/API license?
+
+3. Finally, could you provide the current Insider/API pricing, API credit allowance and rate limits, and let me know whether a bulk historical extraction option is available for researchers who need to initialize a full historical IDX database?
+
+My main objective is to create a reproducible point-in-time historical dataset rather than redistribute Sectors data to third parties.
+
+Thank you. I would be happy to provide a more detailed field-level data requirement if useful.
+
+Best regards,
+Andi
+
+My name is Rasya Audrea Bramantya Wijaya from Institut Teknologi Sepuluh Nopember. I am preparing an academic thesis/research project on predictive modelling for Indonesian/IDX stocks.
+
+We are currently conducting due diligence on potential data providers before selecting a data source. At this stage, we are not requesting paid activation or making a purchase yet. We would first like to confirm the historical coverage, data quality, timestamps, academic licensing, and pricing.
+
+Our core requirement is daily/EOD data for approximately 5-10 IDX-listed common stocks, the …
+
+Thank you for your interest in Sectors.app. We cover 900+ tickers from the IDX, and you can access the historical data up to 5 years via our API.
+
+As for the data availability, you can visit the following link to understand further how we can support your use case: https://docs.sectors.app/get-started/v2/overview
+
+We also provide API playground if you want to see if the data response suit your needs that can be access via the API playground tabs on the following page:
+https://sectors.app/api
+
+Currently we don't have dedicated student pricing, but if you're keen to learn further abou
+
+Selamat Siang, Bapak/Ibu, saya ingin menanyakan mengenai akses data pasar
+saham Indonesia secara realtime untuk keperluan pribadi.Saya kerja trader,
+sedang membangun aplikasi analisisa saham sederhana dengan bantuan AI yang
+hanya akan digunakan sendiri dan tidak untuk dijual, dipublikasikan, maupun
+mendistribusikan kembali data kepada pihak lain.Saya ingin mengetahui
+apakah tersedia akses data/API untuk scraping, apakah bisa?
+
+I am reaching out to inquire about the data extraction capabilities on
+Sectors. Specifically, I would like to know if your platform supports
+extracting Broker Summary data for the Indonesia Stock Exchange (IDX)?
+
+If this feature is currently available, could you please guide me on how to
+access or export this data? Alternatively, if it is not directly accessible
+on the platform, I would appreciate knowing if there are any plans to
+support it or if it can be provided via API/custom data requests.
+
+Yes Pak, Broker Summary data for IDX stocks is available through the
+Sectors API
+<https://docs.sectors.app/api-references/v2/indonesia/brokers/broker-summary-by-symbol>,
+including top buyers and sellers by stock symbol and date range, along with
+broker-level buy, sell, and net transaction values. You can find more
+details on our API endpoints and documentation here:
+https://docs.sectors.app/
+
+Perkenalkan, saya abraham, seorang *developer* yang sedang mengembangkan
+aplikasi terkait pasar keuangan. Saat ini, saya tertarik untuk
+mengeksplorasi layanan API Stock Market Anda, khususnya yang mencakup
+data *Indeks
+Harga Saham Gabungan (IHSG)* di Bursa Efek Indonesia.
+
+Sebelum memutuskan untuk melakukan integrasi teknis lebih lanjut, saya
+ingin meminta kesempatan untuk menjadwalkan sesi *demo produk (live demo)*
+guna melihat langsung fungsionalitas, cara kerja, dan performa dari API
+Anda.
+
+Mohon informasikan apakah ada slot waktu yang tersedia dalam minggu ini
+atau minggu depan untuk melakukan demo singkat melalui *video call*
+(misalnya via Zoom, Google Meet, atau platform pilihan Anda).
+
+Demikian permohonan ini saya sampaikan. Terima kasih atas waktu dan bantuan
+yang diberikan.
+
+Perkenalkan saya Rosyad dari Tim Sectors. Terima kasih sudah menghubungi
+kami dan ketertarikannya terhadap Sectors API.
+
+Sectors merupakan *API-First Financial Data Platform* dengan cakupan 99.9%
+perusahaan tercatat di Indonesia dan lebih dari 40.000 monthly active
+users. Sectors juga digunakan oleh berbagai institusi finansial untuk
+mendukung kebutuhan riset, analisis, dan pengembangan solusi berbasis
+market data.
+
+Kami dengan senang hati dapat menjadwalkan sesi diskusi lebih lanjut, untuk
+waktunya kami juga siap sesuaikan dengan jadwal Pak Abraham & team.
+
+Dear Sectors Team,
+I’m Gilang, one of your subscribers under the account product-team@alldataint.com.
+Our main motivation for subscribing to your API was to use your data for building data-driven financial reports. However, after reviewing and comparing the API results with our financial experts and other third-party data providers (such as IndoPremier from the Indonesia Stock Exchange), we found that the data accuracy is quite poor.
+Some critical variables — such as EBITDA and CPLTD — show inaccurate values.
+At this point, we’ve decided to keep only the following variables, as they provide consistent and reliable values across companies:
+[
+    'gross_profit_margin',
+    'operating_profit_margin',
+    'total_asset_turnover',
+    'revenue',
+    'gross_profit',
+    'operating_pnl',
+    'total_debt',
+    'total_equity',
+    'total_assets',
+    'cash_and_equivalents',
+    'total_liabilities',
+    'interest_expense_non_operating'
+]
+Could you please let us know if there have been any updates or refinements to your data pipeline to address these accuracy issues?
+Thank you for your attention, and I look forward to your response.
+Best regards,
+Gilang
+Product Team – All Data
+
+Hi Gilang,
+
+Thank you for your feedback.
+
+EBITDA
+We’ve identified the root cause of the data difference — it stems from differences in the depreciation and amortization calculations used in the company’s reported financial statements versus our own calculations.
+
+Currently, we derive EBITDA through our own computation, which results in variations whenever the depreciation and amortization values differ. To address this, we’re now working on updating the process so that, whenever available, the EBITDA value will be taken directly from the company’s reported figures.
+
+We apologize for the inconvenience and will provide an update once this fix has been fully implemented.
+
+CPLTD
+As of now, we don’t have any data about CPLTD (Current Portion of Long-Term Debt). We only have metrics for current liabilities and non-current liabilities, which the data already the same with the one in IndoPremier.
+
+Thank you.
+
+Best regards,
+Gerald
+
+Apakah sectors bisa menyediakan data-data lain seperti indonia, jibor, credit default swap dll?
+
+
+Terimakasih Anda telah menghubungi kami. Saat ini kami belum menyediakan data seperti INDONIA, JIBOR, atau CDS secara default di Sectors.app. Akan tetapi beberapa Client kami memiliki kebutuhan data khusus seperti Anda dan kami bisa menyediakan data - data di luar data yang ada pada Sectors.app. Apakah bisa di share use case untuk data tersebut di perusahaan Anda? dan estimasi budget yang saat ini ada untuk melakukan akuisisi data tersebut?
+
+Hello. I am considering to get Sectors.app insider subscription for access to API. There are a few questions to help me decide:
+(1) Does the API have OHLCV/adjusted endpoint per ticker? I cannot find it in https://docs.sectors.app/
+(2) When is prior-day EOD available each morning, WIB?
+(3) Does 5,000 Insider credits/month cover a daily full-universe close pull, or do I need the Screener for that?
+Thanks in advance for your help!
+
+But let me give you a brief clarifications here too.
+
+(1) We have the daily close price. The docs can be accessed here https://docs.sectors.app/api-references/v2/indonesia/transaction/daily 
+
+(2) latest by 5am WIB if not earlier.
+
+(3) 5k credits/month would be sufficient. There’ll be an endpoint where you can pull all ‘close’ (which would cost ~32 credit per request). 
+
+If you’re open to chat with our team member, he may be able to give better advice or tips to optimise your workflow.
+
+*we've added OHLCV after this email.
+Daily Transaction Data - Sectors Financial APIReturns daily close price, volume, and market cap for a given IDX symbol over a date range of up to 90 days. IDX symbol: 4 letters, optionally followed by .jk (case-insensitive). E.g. BBCA, GOTO, TLKM. Date range: defaults to last 30 days. Max window 90 days; wider ranges are clamped to the most recent 90 days ending at end. Future end dates return 400. Costs 1 API credit.Sectors Financial API[2:51 PM]Untuk berlangganan api sector app cara dan biaya nya berapa?
+Halo kak. Untuk rincian biaya dan cara berlangganan API dari Sectors.app, silakan cek langsung di tautan berikut: https://sectors.app/pricing
+
+Biaya untuk data api saham dari sectorapp
+Terima kasih atas ketertarikan Anda pada Sectors! Silakan cek skema paket harga lengkap kami secara langsung melalui tautan ini: https://sectors.app/pricing
+
+Sectors memiliki Paket Insider yang menyediakan 5.000 kredit API dengan biaya $59 per bulan.
+
+Hubungi kami kembali jika ada hal yang ingin ditanyakan!
+
+Halo Kak, Sectors saat ini mencakup 99% saham yang terdaftar di BEI (Bursa Efek Indonesia). 
+
+Data yang kami miliki meliputi data keuangan historis (kuartalan dan tahunan), data dividen (historis dan yang akan datang), komposisi kepemilikan saham, insider trading, analisis broker, berita, dan masih banyak lagi.
+
+Namun perlu diketahui bahwa kami tidak menyediakan harga saham secara real-time, melainkan hanya harga penutupan pasar (market close price).
+
+Untuk berlangganan, Kakak dapat langsung mengunjungi tautan berikut: https://sectors.app/pricing. Silakan lakukan pendaftaran akun terlebih dahulu, lalu pilih “Switch to Insider”.
+
+Setelah itu, Kakak akan diarahkan ke halaman pembayaran. Akun Kakak akan otomatis upgrade segera setelah pembayaran berhasil dikonfirmasi.
+
+Jika ada kendala selama proses berlangsung, jangan ragu untuk memberi tahu kami, ya!
+[2:55 PM]Untuk market indo ada broker summary juga ga ya
+
+Halo! Untuk subscription plan Insider di Sectors, Anda akan mendapatkan akses ke berbagai data eksklusif, analisis berbasis AI, hingga metrik spesifik untuk industri tertentu.
+
+Dan untuk pertanyaan Anda: Ya, betul! Untuk market Indonesia sudah termasuk Broker Summary (Analisis Broker).
+
+Adakah list data apa aja kak yg didapatkan Saya mencari soyrce data broker summary stocks indo beserta fundamental dan sector stocks nya Adakah profuct festingnya?
+Jika Anda suka mengolah data sendiri atau membuat sistem screening otomatis, insider plan ini juga memberikan akses ke berbagai API endpoints resmi. Dokumentasi lengkapnya bisa Anda pelajari di ⁠docs.sectors.app⁠. https://docs.sectors.app/api-references/v2/indonesia/brokers/broker-activity-by-code 
+Broker Activity By Code - Sectors Financial APIAll (stock, day) trading activity for one broker over a date range up to 14 days, grouped by date. Optionally filter to a single stock via symbol. Each entry in data lists every stock the broker touched that day with buy/sell/net values. Broker codes are the two-letter exchange-member identifiers (e.g. MG, AK, CC). Retrieve the full list of valid codes from the Broker Registry endpoint. Costs 1 API credit.Sectors Financial API[2:56 PM]bingung di onboarding nya kak
+
+Tenang saja, Kak! Bisa tonton video panduannya di sini untuk menyelesaikan onboarding questnya: https://www.youtube.com/watch?v=nEEn97JgT-8 
+
+Selain itu, yuk gabung juga di Slack kami untuk melihat semua dokumen pendukung serta mendapatkan support, diskusi, dan panduan lengkap selama masa pembuatan proyek hackathon berlangsung.
+
+Kabari lagi ya kalau masih ada yang bikin bingung!
+Guide to complete Sectors onboarding questSectorsYouTube[2:56 PM]Can we get recording from ws making claude as invesment companion? No I am not the participant
+How to get recording?
+
+You can sign up as a a paid subscriber to get the latest three past workshop recordings on sectors.app :)[2:56 PM]bro ada paid service untuk full insight emiten yg di request ?
+
+Sebagai informasi, dengan berlangganan paket Insider kami, kamu sudah bisa membuka akses ke berbagai data & fitur premium, termasuk modul extension tambahan.
+
+Untuk rincian lengkap fitur dan data yang didapatkan di paket Insider, kamu bisa cek langsung di sini ya: https://sectors.app/pricing 
+[2:58 PM]Untuk API requestnya perbulan di berapa bnyak?
+
+Untuk paket Insider, kuota yang didapatkan adalah 5.000 kredit per bulan. Kuota akan di-refresh otomatis setiap bulan.
+
+Sisa kredit yang tidak terpakai di akhir bulan akan hangus dan tidak dapat diakumulasikan ke bulan berikutnya.
+
+Sistem kredit maksudnya bagaimana ya?
+Setiap API call akan memotong kuota kredit dengan jumlah yang berbeda tergantung kompleksitas datanya.
+Contohnya, endpoint di mana kak dapat menarik seluruh data ‘close’ akan dikenakan biaya sekitar 32 kredit per request.
+
+Untuk datanya ada tersedia berapa tahun kebelakang? Halo kak, kami memiliki riwayat data hingga 10 tahun ke belakang. [2:58 PM]Does your IDX API transaction flow expose broker code for lower timeframe?
+
+Hi!
+
+For now, we have the summary of the broker transaction for each broker in each trading day.
+
+For a more complete available endpoint regarding the broker transaction you can refer to our API documentation from this link
+
+https://docs.sectors.app/api-references/v2/indonesia/brokers/broker-activity-by-code 
+Broker Activity By Code - Sectors Financial APIAll (stock, day) trading activity for one broker over a date range up to 14 days, grouped by date. Optionally filter to a single stock via symbol. Each entry in data lists every stock the broker touched that day with buy/sell/net values. Broker codes are the two-letter exchange-member identifiers (e.g. MG, AK, CC). Retrieve the full list of valid codes from the Broker Registry endpoint. Costs 1 API credit.Sectors Financial API[2:59 PM]Now i have api access, but how to watch past workshop. When i click on the button watch with insider it just get me to the subscription page and not the recorded workshop
+
+There are three tabs: Review, Past Workshops and Recordings.
+
+Please go to Recordings tab and you’ll find the videos and materials there :)
+[3:00 PM]Halo kak!
+Jadi untuk kuota 5.000 kreditnya akan otomatis di-refresh setiap bulannya. Tapi perlu diingat kalau sistemnya tidak ada rollover, ya. 
+
+Artinya, sisa kredit yang tidak terpakai di bulan tersebut akan langsung hangus dan tidak akan diakumulasikan ke bulan berikutnya. Jadi, pastikan kuotanya dimaksimalkan sebaik mungkin setiap bulan biar tidak mubazir!
+
+Khusus untuk kredit gratis dari workshop yang 3.000 itu, masa berlakunya lebih panjang kok, yaitu aktif sampai satu tahun. 
+
+Jadi kalau nanti Kakak gabung ke paket Insider, Kakak akan tetap dapat tambahan 5.000 kredit yang di-refresh setiap bulannya, sementara sisa dari 3.000 kredit workshop-nya akan tetap tersimpan dan bisa terus dipakai barengan selama setahun itu.
+[3:03 PM]halo kak, kenapa ada perbedaan laporan keuangan ya, contoh tlkm di stockbit terakhir update sekitar q4 2025, tapi di api sector hanya sampai q3 2025
+
+Halo Kak, terima kasih banyak atas laporannya.
+
+Mengenai perbedaan data laporan keuangan TLKM tersebut, tim teknis kami sudah langsung melakukan pengecekan ke dalam sistem dan rerun pipeline data untuk memastikan seluruh data laporan keuangan Q4 2025 ter-update dengan sempurna di API kami.
+
+Kami memohon maaf atas ketidaknyamanan yang ditimbulkan. Terima kasih banyak sudah membantu kami menemukan issue ini—masukan seperti ini sangat berharga untuk menjaga akurasi data di Sectors.app.
+
+Kakak bisa coba lakukan pengecekan kembali secara berkala di API ya, Kak. Jika ada hal lain yang perlu ditanyakan, silakan beri tahu kami.
+
+Sebagai konteks tambahan, pihak TLKM kemarin memang sempat mengalami keterlambatan dalam penyerahan laporan keuangan tahunan (annual data) ke bursa, yang mana seharusnya dijadwalkan pada bulan April lalu. Karena keterlambatan dari emiten tersebut, pada saat pipeline rutin kami berjalan sebelumnya, data laporan keuangan mereka belum tersedia di bursa sehingga belum terinput ke sistem kami.
+
+Sebagai langkah antisipasi ke depan, kami akan memasang guardrail (sistem proteksi) tambahan pada sistem kami untuk memastikan seluruh data selalu up-to-date. Jadi, jika nantinya terdeteksi ada data laporan keuangan emiten yang belum lengkap, sistem akan otomatis melakukan rerun pipeline secara berkala.
+
+saya mau berhentei langanan dulu kak tapi di strip setiap hari di tagih terus jadi saldo kepotonh terus, cara agar bisa cancel dulu gimana kak
+
+Halo Kak, mohon maaf atas ketidaknyamanannya.
+
+Agar tagihan dari Stripe berhenti, Kakak bisa membatalkan langganannya secara mandiri dengan langkah-langkah berikut:
+
+Klik ikon profil yang ada di pojok kiri bawah halaman.
+Masuk ke menu Account Settings.
+Pilih opsi Plan & Usage.
+Klik pada kartu pertama (yang menampilkan detail paket “Insider” Kakak).
+Di dalam kartu tersebut, silakan klik tombol “Cancel Subscription”.
+
+
+Setelah langkah di atas selesai, status langganan Kakak akan langsung berubah dan sistem tidak akan menarik saldo lagi untuk periode berikutnya.
+[3:04 PM]Halo kak! 
+
+Untuk saat ini, kami hanya menyediakan endpoint API untuk data berikut:
+• Insider Trading: https://api.sectors.app/v1/filings/
+• Institutional Buy/Sell: (Direkap bulanan di dalam endpoint laporan perusahaan) https://api.sectors.app/v1/company/report/bbca/?sections=overview,financials (edited)
